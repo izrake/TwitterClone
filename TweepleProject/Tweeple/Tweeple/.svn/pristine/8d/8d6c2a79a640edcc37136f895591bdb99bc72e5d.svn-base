@@ -1,0 +1,46 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
+
+namespace Tweeple
+{
+    public partial class EditTweet : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+           
+        }
+
+        //protected void BindData()
+        //{
+        //    SqlConnection con = new SqlConnection("Data Source=192.168.1.74;Initial Catalog=Tweeple;User Id=sa;Password=welcome;");
+
+        //    SqlCommand cmd = new SqlCommand("select * from UserDetail where user_id=@id", con);
+        //    string a = "somit";
+
+        //    cmd.Parameters.AddWithValue("@id", a);
+
+        //    if (con.State == ConnectionState.Closed)
+        //    {
+        //        con.Open();
+        //    }
+        //    SqlDataAdapter da = new SqlDataAdapter();
+        //    da.SelectCommand = cmd;
+        //    DataSet ds = new DataSet();
+
+        //    da.Fill(ds, "Tweet");
+
+        //    //gvdetails.DataSource = ds.Tables["UserDetail"];
+        //    gvdetails.DataBind();
+
+        //    con.Close();
+        //}
+
+    }
+}

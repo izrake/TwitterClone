@@ -1,0 +1,96 @@
+﻿#wrapper
+{
+    width:1336px;
+    height:960px;
+    top:0px;
+    left:0;
+}
+
+.header
+{
+    position:fixed;
+    width:1336px;
+    height:70px;
+    background-color:Green;
+    z-index:100;
+}
+
+.container
+{
+    width:1336px;
+    height:960px;
+    background-color:Red;
+   
+}
+
+.containerPic
+{
+    float:left;
+    width:450px;
+    margin-top:80px;
+    height:880px;
+    background-color:Blue;
+}
+
+.profileImage
+{
+    width:200px;
+    height:200px;
+    margin-top:10px;
+    margin-left:120px;
+    border-radius:50%;
+    background-color:Gray;
+}
+.followerFollowin
+{
+    width:360px;
+    height:360px;
+    background-color:Orange;
+    margin-left:40px;
+    margin-top:15px;
+}
+
+
+.DataContainer
+{
+    margin-top:80px;
+    width:550px;
+    background-color:Yellow;
+    height:880px;
+    float:left;
+}
+
+.tweetUpdaterContainer
+{
+    width:500px;
+     height:150px;
+     margin-left:20px;
+    background-color:Aqua;
+    
+}
+.tweetUpdater
+{
+    width:350px;
+    height:100px;
+    margin-left:15px;
+    margin-top:10px;
+    background-color:Black;
+    
+}
+
+.suggestion
+{
+    float:right;
+    width:300px;
+    height:880px;
+    background-color:Blue;
+    margin-top:80px;
+    margin-right:5px;
+}
+
+.tweetView
+{
+    
+}
+
+

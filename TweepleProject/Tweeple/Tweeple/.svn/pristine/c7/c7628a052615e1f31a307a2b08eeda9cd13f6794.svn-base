@@ -1,0 +1,39 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Tweeplehome.aspx.cs" Inherits="Tweeple.WebForm1" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link rel="Stylesheet" type="text/css" href="Tweeplemaster.css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+    <div class="container">
+    <div class="containertop">
+    <asp:Image ImageUrl="~/Images/h1.jpg" ID="imghome"  runat="server" />
+        <asp:Image ImageUrl="~/Images/images (1).jpg" ID="imghuman"  runat="server" />
+    </div>
+    <div class="containerleft">
+    <div class="containerprofilepic">
+    
+    </div>
+    
+    <div class="subleft">
+    
+    </div>
+    
+    </div>
+  
+    </div>
+      <div class="container-center">
+    
+    </div>
+    <div class="container-right">
+  
+    </div>
+    </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,234 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
+
+
+namespace Tweeple
+{
+    public partial class TweepleMaster : System.Web.UI.MasterPage
+    {
+        SqlConnection conObj = new SqlConnection();
+        SqlCommand cmdObj = new SqlCommand();
+        string mainuser = "";
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                if (Session["Username"] != null)
+                {
+                    SuggestionLoad();
+                    TweetLoad();
+                    LoadFollowing();
+                    LoadFollowers();
+                }
+                else
+                {
+                    Response.Redirect("SignIn.aspx");
+                }
+            }
+        }
+
+        private void LoadFollowers()
+        {
+            string asd = Session["Username"].ToString();
+            conObj = new SqlConnection(ConfigurationManager.ConnectionStrings["ConCGI"].ConnectionString);
+            SqlCommand cmdObj = new SqlCommand("findFollowers", conObj);
+            cmdObj.CommandType = CommandType.StoredProcedure;
+            cmdObj.Parameters.AddWithValue("@asd", asd);
+            if (conObj.State == ConnectionState.Closed)
+            {
+                conObj.Open();
+            }
+            SqlDataAdapter adapter = new SqlDataAdapter(cmdObj);
+            DataSet ds = new DataSet();
+            adapter.Fill(ds, "Followers");
+            dlShowFollowers.DataSource = ds.Tables["Followers"];
+            dlShowFollowers.DataBind();
+        }
+
+        private void LoadFollowing()
+        {
+            string asd = Session["Username"].ToString();
+            conObj = new SqlConnection(ConfigurationManager.ConnectionStrings["ConCGI"].ConnectionString);
+            SqlCommand cmdObj = new SqlCommand("findFollowings", conObj);
+            cmdObj.CommandType = CommandType.StoredProcedure;
+            cmdObj.Parameters.AddWithValue("@asd", asd);
+            if (conObj.State == ConnectionState.Closed)
+            {
+                conObj.Open();
+            }
+            SqlDataAdapter adapter = new SqlDataAdapter(cmdObj);
+            DataSet ds = new DataSet();
+            adapter.Fill(ds, "Followings");
+            dlShowFollowings.DataSource = ds.Tables["Followings"];
+            dlShowFollowings.DataBind();
+        }
+
+        private void TweetLoad()
+        {
+            string asd = Session["Username"].ToString();
+            conObj = new SqlConnection(ConfigurationManager.ConnectionStrings["ConCGI"].ConnectionString);
+            SqlCommand cmdObj = new SqlCommand("findOutTweets", conObj);
+            cmdObj.CommandType = CommandType.StoredProcedure;
+            cmdObj.Parameters.AddWithValue("@asd", asd);
+            if (conObj.State == ConnectionState.Closed)
+            {
+                conObj.Open();
+            }
+            SqlDataAdapter adapter = new SqlDataAdapter(cmdObj);
+            DataSet ds = new DataSet();
+            adapter.Fill(ds, "Tweets");
+            dlTweets.DataSource = ds.Tables["Tweets"];
+            dlTweets.DataBind();
+
+
+        }
+        private void SuggestionLoad()
+        {
+            string asd = Session["Username"].ToString();
+            followingCount();
+            followersCount();
+            conObj = new SqlConnection(ConfigurationManager.ConnectionStrings["ConCGI"].ConnectionString);
+
+            SqlCommand cmdObj = new SqlCommand("findSuggestion", conObj);
+            cmdObj.CommandType = CommandType.StoredProcedure;
+            cmdObj.Parameters.AddWithValue("@asd", asd);
+            if (conObj.State == ConnectionState.Closed)
+            {
+                conObj.Open();
+            }
+            SqlDataAdapter adapter = new SqlDataAdapter(cmdObj);
+            DataSet ds = new DataSet();
+            adapter.Fill(ds, "Suggestion");
+            DataUpload.DataSource = ds.Tables["Suggestion"];
+            DataUpload.DataBind();
+        }
+
+
+        private void followingCount()
+        {
+            string asd = Session["Username"].ToString();
+            conObj = new SqlConnection(ConfigurationManager.ConnectionStrings["ConCGI"].ConnectionString);
+            SqlCommand cmdObj1 = new SqlCommand("select Count(*) from Following WHERE user_id=@asd", conObj);
+            cmdObj1.Parameters.AddWithValue("@asd", asd);
+
+            conObj.Open();
+
+
+            SqlDataReader rdr = cmdObj1.ExecuteReader();
+            rdr.Read();
+            if (rdr.HasRows)
+            {
+                lblFollowings.Text = rdr[0].ToString();
+            }
+            rdr.Close();
+            cmdObj1.Dispose();
+            conObj.Close();
+
+        }
+        private void followersCount()
+        {
+            string asd = Session["Username"].ToString();
+            conObj = new SqlConnection(ConfigurationManager.ConnectionStrings["ConCGI"].ConnectionString);
+           
+            SqlCommand cmdObj2 = new SqlCommand("countFollowers", conObj);
+            cmdObj2.CommandType = CommandType.StoredProcedure;
+            cmdObj2.Parameters.AddWithValue("@asd", asd);
+            if (conObj.State == ConnectionState.Closed)
+            {
+                conObj.Open();
+            }
+
+            SqlDataReader rdr1 = cmdObj2.ExecuteReader();
+            rdr1.Read();
+            if (rdr1.HasRows)
+            {
+                lblFollower.Text = rdr1[0].ToString();
+            }
+            rdr1.Close();
+            cmdObj2.Dispose();
+            conObj.Close();
+        }
+
+        protected void cmdTweet_Click(object sender, EventArgs e)
+        {
+            string asd = Session["Username"].ToString();
+
+            conObj = new SqlConnection(ConfigurationManager.ConnectionStrings["ConCGI"].ConnectionString);
+            cmdObj = new SqlCommand("insertTweet", conObj);
+            cmdObj.CommandType = CommandType.StoredProcedure;
+            cmdObj.Parameters.AddWithValue("@user_id", asd);
+            cmdObj.Parameters.AddWithValue("@Message", Tweet.Text);
+
+            if (conObj.State == ConnectionState.Closed)
+            {
+                conObj.Open();
+            }
+
+            int res = cmdObj.ExecuteNonQuery();
+            cmdObj.Dispose();
+            conObj.Close();
+            Response.Redirect(Request.RawUrl);
+
+        }
+
+        protected void DataUpload_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            if (e.CommandName == "Follow")
+            {
+                string userid = e.CommandArgument.ToString();
+                UplaodFollowings(userid);
+
+            }
+        }
+
+        private void UplaodFollowings(string userid)
+        {
+
+            conObj = new SqlConnection(ConfigurationManager.ConnectionStrings["ConCGI"].ConnectionString);
+            cmdObj = new SqlCommand("followingProcedure", conObj);
+            cmdObj.CommandType = CommandType.StoredProcedure;
+            mainuser = Session["Username"].ToString();
+            cmdObj.Parameters.AddWithValue("@userid", mainuser);
+            cmdObj.Parameters.AddWithValue("@followingid", userid);
+            if (conObj.State == ConnectionState.Closed)
+            {
+                conObj.Open();
+
+            }
+            int res = cmdObj.ExecuteNonQuery();
+
+            cmdObj.Dispose();
+            conObj.Close();
+            Response.Redirect(Request.RawUrl);
+
+        }
+
+        protected void lnkSignOut_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("SignIn.aspx");
+        }
+
+        
+
+        protected void cmdUpdate_Click(object sender, EventArgs e)
+        {
+            int len = flImage.PostedFile.ContentLength;
+            byte[] img = new byte[len];
+            flImage.PostedFile.InputStream.Read(img, 0, len);
+            if (txtNewEmail.Text== null && txtNewMobile.Text==null && txtNewPass.Text==null && img==null)
+            {
+                lblError.Text = "Please Enter Something to Edit";
+            }
+            
+        }
+
+      
+    }
+}

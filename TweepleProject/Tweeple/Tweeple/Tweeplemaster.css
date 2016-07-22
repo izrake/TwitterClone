@@ -1,0 +1,150 @@
+﻿#wrapper
+{
+    position:absolute;
+    width:1336px;
+    height:960px;
+    top:0;
+    left:0;
+}
+
+.header
+{
+    position:fixed;
+    width:1336px;
+    height:70px;
+   
+    z-index:100;
+}
+
+.container
+{
+    width:1336px;
+    height:960px;
+  
+   
+}
+
+.containerPic
+{
+    float:left;
+    width:450px;
+    margin-top:80px;
+    height:880px;
+    background-color:;
+}
+
+.profileImage 
+{
+    width:200px;
+    height:200px;
+    margin-top:10px;
+    margin-left:120px;
+    border-radius:50%;
+    
+}
+.followerFollowin
+{
+    width:360px;
+    height:360px;
+    background-color:;
+    margin-left:40px;
+    margin-top:30px;
+}
+
+
+.DataContainer
+{
+    overflow:auto;
+    margin-top:80px;
+    width:550px;
+    background-color:Yellow;
+    height:880px;
+    float:left;
+}
+
+.tweetUpdaterContainer
+{
+    width:500px;
+     height:150px;
+     margin-left:20px;
+    background-color:Aqua;
+    
+}
+.tweetUpdater
+{
+    width:350px;
+    height:100px;
+    margin-left:15px;
+    margin-top:10px;
+    background-color:Black;
+    
+}
+
+.suggestion
+{
+    overflow:auto;
+    float:right;
+    width:300px;
+    height:880px;
+    
+    margin-top:80px;
+    margin-right:5px;
+}
+
+.tweetView
+{
+    
+}
+
+
+.myButton {
+	background-color:#44c767;
+	-moz-border-radius:28px;
+	-webkit-border-radius:28px;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:1ing:12px 20px;
+	text-dpx;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.myButton:hover {
+	background-color:#5cbf2a;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+.LinkButtons
+{
+    text-decoration:none;
+    font-style:italic;
+    font-family:@Microsoft YaHei Light;
+}
+
+.signOut
+{
+    color: black;
+    border: 2px solid #e7e7e7;
+    float:right;
+   
+    
+    
+}
+.button {
+   /* Green */
+    border:none; 
+    color: Black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}

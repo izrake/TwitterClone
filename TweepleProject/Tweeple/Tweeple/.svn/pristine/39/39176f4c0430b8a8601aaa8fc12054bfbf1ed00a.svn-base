@@ -1,0 +1,40 @@
+﻿#container
+{
+    width:1336px;
+    height:1300px;
+    
+    background-color:Blue;
+    
+}
+
+.top
+{
+    width:1336px;
+    height:70px;
+      background-color:Black;
+      
+}
+ #imghome
+ {
+     height:40px;
+     width:40px;
+     margin-left:40px;
+     margin-top:20px;
+ }
+
+#imghuman
+{
+     height:60px;
+     width:60px;
+     margin-left:600px;
+     margin-top:10px;
+    
+}
+#txtsearch
+{
+    height:40px;
+    width:100px;
+    margin-top:20px;
+    margin-left:700px;
+
+}

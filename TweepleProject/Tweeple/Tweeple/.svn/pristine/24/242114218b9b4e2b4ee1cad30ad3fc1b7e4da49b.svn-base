@@ -1,0 +1,75 @@
+﻿.container
+{
+    width:1336px;
+    height:1030px;
+    
+    background-color:Blue;
+    
+}
+
+.containertop
+{
+    width:1336px;
+    height:70px;
+      background-color:Black;
+
+      
+}
+ #imghome
+ {
+     height:40px;
+     width:40px;
+     margin-left:40px;
+     margin-top:20px;
+ }
+
+#imghuman
+{
+     height:60px;
+     width:60px;
+     margin-left:600px;
+     margin-top:10px;
+    
+}
+.containerleft
+{
+    height:930px;
+    width:300px;
+    background-color:Green;
+     padding-top:30px;
+}
+.containerprofilepic
+{
+   
+   height:200px;
+    width:250px;
+    background-color:Lime;
+    margin-left:25px;
+    border-radius:50%;
+}
+.subleft
+{
+    height:630px;
+    width:250px;
+    background-color:Red;
+    margin-left:25px;
+    margin-top:30px;
+}
+.container-center
+{
+    height:958px;
+    width:700px;
+    top:78px;
+    margin-left:300px;
+    position:absolute;
+    background-color:Maroon;
+}
+.container-right
+{
+    height:958px;
+    width:336px;
+    top:78px;
+    margin-left:1000px;
+    position:absolute;
+    background-color:Orange;
+}

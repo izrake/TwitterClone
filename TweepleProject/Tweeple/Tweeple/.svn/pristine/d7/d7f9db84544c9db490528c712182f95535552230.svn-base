@@ -1,0 +1,26 @@
+﻿<?xml version="1.0"?>
+<configuration>
+
+    <system.web>
+        <compilation debug="true" targetFramework="4.0" />
+    </system.web>
+  <connectionStrings>
+    <add name="ConCGI" connectionString="Data Source=192.168.1.74;Initial Catalog=Tweeple;User Id=sa;Password=welcome" />
+    <add name="TweepleConnectionString" connectionString="Data Source=192.168.1.74;Initial Catalog=Tweeple;Persist Security Info=True;User ID=sa;Password=welcome"
+      providerName="System.Data.SqlClient" />
+    <add name="TweepleConnectionString2" connectionString="Data Source=192.168.1.74;Initial Catalog=Tweeple;Persist Security Info=True;User ID=sa;Password=welcome"
+      providerName="System.Data.SqlClient" />
+  </connectionStrings>
+  <system.serviceModel>
+    <bindings>
+      <basicHttpBinding>
+        <binding name="BasicHttpBinding_IValidateUser" />
+      </basicHttpBinding>
+    </bindings>
+    <client>
+      <endpoint address="http://localhost:7173/WCFService4/Service.svc"
+        binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IValidateUser"
+        contract="ServiceReference1.IValidateUser" name="BasicHttpBinding_IValidateUser" />
+    </client>
+  </system.serviceModel>
+</configuration>
